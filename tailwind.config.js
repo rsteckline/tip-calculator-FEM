@@ -24,6 +24,10 @@ export default {
       },
       outlineColor: {
         "strong-cyan": "hsl(172, 67%, 45%)",
+      },
+      screens: {
+        "lg": "970px",
+        "sm": "450px",
       }
     },
   },
