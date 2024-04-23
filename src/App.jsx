@@ -75,7 +75,7 @@ function App() {
               </div>
             </div>
             <div className="w-full flex flex-col items-start gap-3">
-              <h2 className="text-dark-grayish-cyan">Select Tip %</h2>
+              <h2 className="text-dark-grayish-cyan mt-5">Select Tip %</h2>
               <div className="grid gap-3 grid-cols-2 grid-rows-3 sm:grid-rows-2 sm:grid-cols-3 text-white text-[22px]">
                 <button
                   className={`py-[9px] bg-very-dark-cyan hover:bg-strong-cyan rounded-md cursor-pointer ${
@@ -138,7 +138,7 @@ function App() {
             </div>
             <div className="w-full flex flex-col items-start gap-3">
               <div className="flex justify-between w-full">
-                <h2 className="text-dark-grayish-cyan">Number of people</h2>
+                <h2 className="text-dark-grayish-cyan mt-6">Number of people</h2>
                 <p
                   className={`text-orange-600 ${people === 0 ? "" : "hidden"}`}
                 >

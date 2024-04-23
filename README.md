@@ -10,20 +10,24 @@
 
 ### Screenshot
 
-![]()
-Mobile View
-
-![]()
+![](src/assets/images/desktop.png)<br />
 Desktop View
+
+![](src/assets/images/mobile.png)<br />
+Mobile View
 
 ### Links
 
-<!-- - Live Site URL: [GitHub Pages]() -->
+[Vercel Deployed](https://bs-tip-calculator.vercel.app/)
 
 
 ### Built with
 
-- 
+- React
+- Vite
+- JavaScript
+- HTML
+- Tailwind
 
 ### What I learned
 
