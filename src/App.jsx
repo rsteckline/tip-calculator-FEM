@@ -191,7 +191,11 @@ function App() {
               </div>
             </div>
             <button
-              className={`w-full py-3 rounded-md ${(bill && tip && people) == "" ? "cursor-not-allowed bg-[#487b7e]" : "cursor-pointer bg-strong-cyan hover:bg-light-grayish-cyan"}`}
+              className={`w-full py-3 rounded-md ${
+                (bill && tip && people) == ""
+                  ? "cursor-not-allowed bg-[#487b7e]"
+                  : "cursor-pointer bg-strong-cyan hover:bg-light-grayish-cyan"
+              }`}
               onClick={handleReset}
               disabled={(bill && tip && people) == ""}
             >
