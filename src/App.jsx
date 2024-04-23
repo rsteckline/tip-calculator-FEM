@@ -6,9 +6,6 @@ import { useState } from "react";
 import { useRef } from "react";
 
 function App() {
-  const billInputRef = useRef(null);
-  const peopleInputRef = useRef(null);
-
   const [bill, setBill] = useState("");
   const [tip, setTip] = useState("");
   const [people, setPeople] = useState("");
@@ -17,13 +14,13 @@ function App() {
   const [total, setTotal] = useState(0);
 
   const onChangeBill = (e) => {
-    setBill(e.target.value);
+    setBill(Number(e.target.value));
   };
   const onChangeTip = (e) => {
-    setTip(e.target.value);
+    setTip(Number(e.target.value));
   };
   const onChangePeople = (e) => {
-    setPeople(e.target.value);
+    setPeople(Number(e.target.value));
   };
 
   const handleReset = () => {
@@ -36,17 +33,6 @@ function App() {
   };
 
   useEffect(() => {
-    if (bill == "0") {
-      billInputRef.current.classList.add("outline-orange-500");
-    } else {
-      billInputRef.current.classList.remove("outline-orange-500");
-    }
-    if (people == "0") {
-      peopleInputRef.current.classList.add("outline-orange-500");
-    } else {
-      peopleInputRef.current.classList.remove("outline-orange-500");
-    }
-
     if (bill && tip && people) {
       setTipAmount((bill * tip) / 100 / people);
       setTotal(bill / people + (bill * tip) / 100 / people);
@@ -56,8 +42,7 @@ function App() {
   return (
     <main className="w-full h-screen flex justify-center lg:items-center bg-dark-blue">
       <div className="flex flex-col gap-8 lg:gap-10 max-w-[520px] lg:mx-[1.3rem] mt-[48px] lg:mt-[2rem] lg:mb-[4rem] lg:max-w-[928.2px]">
-
-      <div className="w-full text-center text-[30px] lg:text-[25px] tracking-[0.25em] text-dark-grayish-cyan">
+        <div className="w-full text-center text-[30px] lg:text-[25px] tracking-[0.25em] text-dark-grayish-cyan">
           <h1>
             SPLI
             <br />
@@ -70,7 +55,7 @@ function App() {
             <div className="w-full flex flex-col items-start gap-3">
               <div className="flex justify-between w-full">
                 <h2 className="text-dark-grayish-cyan">Bill</h2>
-                <p className={`text-orange-600 ${tip === 0 ? "hidden" : ""}`}>
+                <p className={`text-orange-600 ${bill === 0 ? "" : "hidden"}`}>
                   Can't be zero
                 </p>
               </div>
@@ -80,8 +65,9 @@ function App() {
                 </span>
                 <input
                   type="number"
-                  ref={billInputRef}
-                  className="bg-transparent w-full h-full text-right  text-[24px] text-very-dark-cyan px-[15px] py-[8px] pl-[40px] outline-strong-cyan"
+                  className={`bg-transparent w-full h-full text-right text-[24px]text-very-dark-cyan px-[15px] py-[8px] pl-[40px]  no-spinners ${
+                    bill === 0 ? "outline-orange-600" : "outline-strong-cyan"
+                  }`}
                   placeholder="0"
                   value={bill}
                   onChange={onChangeBill}
@@ -91,41 +77,51 @@ function App() {
             <div className="w-full flex flex-col items-start gap-3">
               <h2 className="text-dark-grayish-cyan">Select Tip %</h2>
               <div className="grid gap-3 grid-cols-2 grid-rows-3 sm:grid-rows-2 sm:grid-cols-3 text-white text-[22px]">
-              <button
+                <button
                   className={`py-[9px] bg-very-dark-cyan hover:bg-strong-cyan rounded-md cursor-pointer ${
-                    tip === 5 && "bg-strong-cyan"
+                    tip === 5
+                      ? "bg-strong-cyan text-very-dark-cyan"
+                      : "bg-very-dark-cyan"
                   }`}
                   onClick={() => setTip(5)}
                 >
                   5%
                 </button>
                 <button
-                  className={`py-[9px] bg-very-dark-cyan hover:bg-strong-cyan rounded-md cursor-pointer ${
-                    tip === 10 && "bg-strong-cyan"
+                  className={`py-[9px] hover:bg-light-grayish-cyan rounded-md cursor-pointer ${
+                    tip === 10
+                      ? "bg-strong-cyan text-very-dark-cyan"
+                      : "bg-very-dark-cyan"
                   }`}
                   onClick={() => setTip(10)}
                 >
                   10%
                 </button>
                 <button
-                  className={`py-[9px] bg-very-dark-cyan hover:bg-strong-cyan rounded-md cursor-pointer ${
-                    tip === 15 && "bg-strong-cyan"
+                  className={`py-[9px] hover:bg-light-grayish-cyan hover:text-very-dark-cyan rounded-md cursor-pointer ${
+                    tip === 15
+                      ? "bg-strong-cyan text-very-dark-cyan"
+                      : "bg-very-dark-cyan"
                   }`}
                   onClick={() => setTip(15)}
                 >
                   15%
                 </button>
                 <button
-                  className={`py-[9px] bg-very-dark-cyan hover:bg-strong-cyan rounded-md cursor-pointer ${
-                    tip === 25 && "bg-strong-cyan"
+                  className={`py-[9px] hover:bg-light-grayish-cyan hover:text-very-dark-cyan rounded-md cursor-pointer ${
+                    tip === 25
+                      ? "bg-strong-cyan text-very-dark-cyan"
+                      : "bg-very-dark-cyan"
                   }`}
                   onClick={() => setTip(25)}
                 >
                   25%
                 </button>
                 <button
-                  className={`py-[9px] bg-very-dark-cyan hover:bg-strong-cyan rounded-md cursor-pointer ${
-                    tip === 50 && "bg-strong-cyan"
+                  className={`py-[9px]  hover:bg-light-grayish-cyan hover:text-very-dark-cyan rounded-md cursor-pointer ${
+                    tip === 50
+                      ? "bg-strong-cyan text-very-dark-cyan"
+                      : "bg-very-dark-cyan"
                   }`}
                   onClick={() => setTip(50)}
                 >
@@ -141,15 +137,23 @@ function App() {
               </div>
             </div>
             <div className="w-full flex flex-col items-start gap-3">
-              <h2 className="text-dark-grayish-cyan">Number of people</h2>
+              <div className="flex justify-between w-full">
+                <h2 className="text-dark-grayish-cyan">Number of people</h2>
+                <p
+                  className={`text-orange-600 ${people === 0 ? "" : "hidden"}`}
+                >
+                  Can't be zero
+                </p>
+              </div>
               <div className="relative w-full bg-slate-100 rounded-md h-[3rem]">
                 <span className="absolute w-4 h-4 top-[15px] left-[15px]">
                   <img src={person} alt="person icon" />
                 </span>
                 <input
                   type="number"
-                  ref={peopleInputRef}
-                  className="bg-transparent w-full h-full text-right  text-[24px] text-very-dark-cyan px-[15px] py-[8px] pl-[40px] outline-strong-cyan no-spinners"
+                  className={`bg-transparent w-full h-full text-right  text-[24px] text-very-dark-cyan px-[15px] py-[8px] pl-[40px]  no-spinners ${
+                    people === 0 ? "outline-orange-600" : "outline-strong-cyan"
+                  }`}
                   placeholder="0"
                   value={people}
                   onChange={onChangePeople}
@@ -187,8 +191,9 @@ function App() {
               </div>
             </div>
             <button
-              className="w-full py-3 rounded-md bg-green-400 hover:bg-strong-cyan"
+              className={`w-full py-3 rounded-md ${(bill && tip && people) == "" ? "cursor-not-allowed bg-[#487b7e]" : "cursor-pointer bg-strong-cyan hover:bg-light-grayish-cyan"}`}
               onClick={handleReset}
+              disabled={(bill && tip && people) == ""}
             >
               RESET
             </button>
