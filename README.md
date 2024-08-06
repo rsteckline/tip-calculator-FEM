@@ -29,14 +29,6 @@ Mobile View
 - HTML
 - Tailwind
 
-### What I learned
-
-- 
-
-### Useful resources
-
-- []()
-
 ## Author
 
 [Bobby Steckline](https://www.github.com/rsteckline)
